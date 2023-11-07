@@ -1,0 +1,6 @@
+service: () -> {
+    claim: () -> ();
+    deposit: (nat) -> ();
+    whoami: () -> (principal) query;
+    withdraw: (nat) -> ();
+}
