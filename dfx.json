@@ -12,7 +12,7 @@
       "dependencies": ["token"],
       "type": "custom",
       "main": "src/staking/index.ts",
-      "candid": "src/declarations/staking/staking.did",
+      "candid": "src/staking/index.did",
       "build": "npx azle staking",
       "wasm": ".azle/staking/staking.wasm",
       "gzip": true,
