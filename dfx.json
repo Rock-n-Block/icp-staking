@@ -9,9 +9,10 @@
       "main": "src/token/token.mo"
     },
     "staking": {
+      "dependencies": ["token"],
       "type": "custom",
       "main": "src/staking/index.ts",
-      "candid": "src/staking/index.did",
+      "candid": "src/declarations/staking/staking.did",
       "build": "npx azle staking",
       "wasm": ".azle/staking/staking.wasm",
       "gzip": true,
@@ -31,7 +32,7 @@
       }
     },
     "app": {
-      "dependencies": ["whoami", "internet-identity"],
+      "dependencies": ["whoami", "staking", "internet-identity"],
       "source": ["src/app/dist"],
       "type": "assets"
     }

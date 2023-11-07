@@ -47,9 +47,7 @@ const Dip20Canister = Canister({
   allowance: query([IdentityId, IdentityId], nat),
 });
 
-const TOKEN_CANISTER_ID = "ajuq4-ruaaa-aaaaa-qaaga-cai"; // dfx canister id token
-
-const tokenCanister = Dip20Canister(Principal.fromText(TOKEN_CANISTER_ID));
+let tokenCanister;
 
 const STAKE_YEAR_PERCENT = 15;
 
@@ -197,6 +195,10 @@ export default Canister({
     console.log("Canister is initialized");
     stableStorage.insert(StableStorageKey.TotalStaked, BigInt(0));
     stableStorage.insert(StableStorageKey.TotalRewardDebt, BigInt(0));
+    console.log(`TOKEN_CANISTER_ID: ${process.env.TOKEN_CANISTER_ID!}`);
+    tokenCanister = Dip20Canister(
+      Principal.fromText(process.env.TOKEN_CANISTER_ID!)
+    );
   }),
   ...(IS_DEV && {
     myId: query([], Principal, () => ic.id()),
