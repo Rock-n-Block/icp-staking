@@ -1,12 +1,12 @@
 {
   "name": "icp-staking",
   "scripts": {
+    "start:dfx": "dfx start --background --clean --host \"127.0.0.1:4943\"",
     "start": "vite src/app --config vite.config.react.js",
     "build": "vite build src/app --config vite.config.react.js",
-    "prebuild": "npm run generate",
     "prestart": "npm run generate",
-    "start:dfx": "dfx start --background --clean --host \"127.0.0.1:4943\"",
-    "generate": "dfx generate whoami",
+    "prebuild": "npm run generate",
+    "generate": "dfx generate",
     "azle": "./node_modules/.bin/azle"
   },
   "devDependencies": {

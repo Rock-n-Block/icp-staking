@@ -12,18 +12,25 @@ To get started, start a local dfx development environment in this directory with
 ```bash
 dfx start --background --clean
 
-rm -rf ./.dfx ./.azle ./node_modules
+rm -rf ./.dfx ./.azle ./src/staking/index.did ./src/declarations ./src/app/dist ./node_modules
 
-npm install
+
+
+npm install -f
 
 # init local internet identity canister
 dfx deps pull
 dfx deps init --argument '(null)' internet-identity
+dfx deps deploy
 
 dfx deploy --argument="(\"https://s2.coinmarketcap.com/static/img/coins/64x64/28230.png\", \"Big Time\", \"BIGTIME\", 6, 10000000000000000, principal \"$(dfx identity get-principal --identity=default)\", 0)" token
 
-dfx deps deploy
+dfx deploy # internally calls `npm run build` and `npm run prebuild` for app canister
 
+
+
+# dfx deploy staking && dfx generate staking # generate declarations/staking/staking.did
+dfx deploy staking # > dfx generate staking (doesn't generate did file for staking = but generates it in declarations/ folder)
 
 dfx canister uninstall-code token
 dfx canister uninstall-code staking # => delete (delete code + state)

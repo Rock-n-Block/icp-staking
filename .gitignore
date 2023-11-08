@@ -17,3 +17,4 @@ dist/
 .env
 
 src/declarations
+src/staking/index.did
